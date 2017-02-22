@@ -10,6 +10,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import sun.java2d.loops.DrawRect;
+import java.awt.Graphics;
+import java.awt.Color;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 /**
  *
@@ -17,115 +20,106 @@ import sun.java2d.loops.DrawRect;
  */
 public class Diamond extends JFrame {
 
+    JButton options;
+    JButton diam;
+    JButton exit;
 
-    GridBagConstraints gbc = new GridBagConstraints();
-    //ImageIcon imageLabel;// = new JLabel(new ImageIcon("F:\\Roman\\Proga\\Progect\\New Java Project.jpg"));
+    Option opt = new Option();
+    Options opts = new Options("");
 
-    JLabel label0;
-    JPanel panel0;
+    DrowDiamond dd = new DrowDiamond();
+    EXIT ex = new EXIT();
 
-    JLabel label;
-    JPanel panel;
-
-    JLabel label1;
-    JPanel panel1;
-
-    JLabel label2;
-    JPanel panel2;
-
-    JLabel label3;
-    JPanel panel3;
-
-    public Diamond(String s) throws InterruptedException {
+    public Diamond(String s) {
         super(s);
-        setLayout(new GridBagLayout());
+        setSize(getMaximumSize());
+        setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        //imageLabel = new ImageIcon(getClass().getResource("F:\\Roman\\Proga\\Progect\\New Java Project\\img.jpg"));
-//        label0 = new JLabel();
-//        panel0 = new JPanel();
-//        label0.setIcon(new ImageIcon("F:\\Roman\\Proga\\Progect\\New Java Project\\fon.jpg"));
-//
-//        gbc.fill = java.awt.GridBagConstraints.BOTH;
-//        panel0.add(label0, gbc);
-//        add(panel0, gbc);
-//        validate();
-        label = new JLabel();
-        panel = new JPanel();
-        label.setIcon(new ImageIcon("F:\\Roman\\Proga\\Progect\\New Java Project\\img.jpg"));
+        setLayout(new FlowLayout());
 
-        gbc.gridx = 100;
-        gbc.gridy = 0;
-        panel.add(label, gbc);
-        add(panel, gbc);
-        validate();
+        options = new JButton("Options");
+        add(options);
 
-        label1 = new JLabel();
-        panel1 = new JPanel();
-        label1.setIcon(new ImageIcon("F:\\Roman\\Proga\\Progect\\New Java Project\\img.jpg"));
+        diam = new JButton("Drow Diamond");
+        add(diam);
 
-        gbc.gridx = 0;
-        gbc.gridy = 100;
-        panel1.add(label1, gbc);
-        add(panel1, gbc);
-        validate();
+        exit = new JButton("EXIT");
+        add(exit);
 
-        label2 = new JLabel();
-        panel2 = new JPanel();
-        label2.setIcon(new ImageIcon("F:\\Roman\\Proga\\Progect\\New Java Project\\img.jpg"));
-
-        gbc.gridx = 200;
-        gbc.gridy = 100;
-        panel2.add(label2, gbc);
-        add(panel2, gbc);
-        validate();
-        
-        label3 = new JLabel();
-        panel3 = new JPanel();
-        label3.setIcon(new ImageIcon("F:\\Roman\\Proga\\Progect\\New Java Project\\img.jpg"));
-
-        gbc.gridx = 100;
-        gbc.gridy = 200;
-        panel3.add(label3, gbc);
-        add(panel3, gbc);
-        validate();
-
-//        final JPanel labPanel = new JPanel();
-//        final JScrollPane scrollPane = new JScrollPane(labPanel);
-//        labPanel.setLayout(new BoxLayout(labPanel, BoxLayout.Y_AXIS));
-//        final Font font = new Font("Verdana", Font.PLAIN, 25);
-
-//        addKeyListener(new KeyAdapter() {
-//            @Override
-//            public void keyPressed(KeyEvent evt) {
-//                switch (evt.getKeyChar()) {
-//                    case 'w':
-//                        for (int i = 0; i < 10; i++) {
-//
-//                        }
-//                        break;
-//                    case 's':
-//                        int number = labels.size() + 1;
-//                        labels.add(panel);
-//                        panel.setAlignmentX(JPanel.CENTER_ALIGNMENT);
-//                        panel.setFont(font);
-//                        labPanel.add(panel);
-//                        scrollPane.revalidate();
-//                    case 'a':
-//
-//                        break;
-//                    case 'd':
-//
-//                        break;
-//                }
-//            }
-//        });
-//        for (int i = 0; i < 10; i++) {
-//            int number = labels.size() + 1;
-//            labels.add(panel);
-//            panel.setAlignmentX(JPanel.CENTER_ALIGNMENT);
-//            panel.setFont(font);
-//            labPanel.add(panel);
-//            scrollPane.revalidate();
-//        }
+        options.addActionListener(opt);
+        diam.addActionListener(dd);
+        exit.addActionListener(ex);
     }
+
+    public class Option implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == options) {
+                Options opt = new Options("Options for Diamond");
+
+                opt.setVisible(true);
+                opt.setSize(275, 150);
+                opt.setLocationRelativeTo(null);
+            }
+        }
+
+    }
+
+    public class DrowDiamond implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == diam) {
+                JFrame Diamond = new JFrame();
+                Diamond = new JFrame("Diamond");
+                Diamond.setSize(0 + opts.HD, 0 + opts.LD);
+                Diamond.setVisible(true);
+                Diamond.setLocationRelativeTo(null);
+            }
+        }
+
+    }
+
+    public class EXIT implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == exit) {
+                System.exit(0);
+            }
+        }
+
+    }
+
+    //  public void paint(Graphics g) {
+//        Options opt = new Options("");
+//        int HD = opt.HD;
+//        int LD = opt.LD;
+//        g.setColor(Color.LIGHT_GRAY);
+//        g.drawLine(100, 100, 100, 200);
+//        g.drawLine(50, 150, 150, 150);
+//        g.drawLine(150, 100, 100, 200);
+//        g.setColor(Color.DARK_GRAY);
+//        g.drawOval(119, 139, 61, 61);
+//        g.setColor(Color.red);
+//        g.drawPolygon(new int[]{100 * 2, 150 * 2, 200 * 2}, new int[]{(-100) + 200 * 2, (-100) + 100 * 2, (-100) + 200 * 2}, 3);
+//        g.setColor(Color.orange);
+//        g.fillOval(119 * 2, (-101) + 139 * 2, 62 * 2, 62 * 2);
+//
+//        g.setColor(Color.red);
+//        g.fillOval(119 * 2, 160 + 139 * 2, 62 * 2, 62 * 2);
+//        g.setColor(Color.black);
+//        for (int i = 0; i < 12; i++) { //rotation
+//            g.drawPolygon(new int[]{100 * 2 - 2 * i, 150 * 2 + 10 * i, 200 * 2 - 8 * i}, new int[]{160 + 200 * 2 - 11 * i, 160 + 100 * 2 + 5 * i, 160 + 200 * 2 + 8 * i}, 3);
+//        }
+//
+//        for (int i = 0; i < 5; i++) { //pattern
+//            g.drawPolygon(new int[]{500 + 100 * i, 550 + 100 * i, 600 + 100 * i}, new int[]{500, 400, 500}, 3);
+//            g.fillOval(519 + 100 * i, 439, 62, 62);
+//            g.drawPolygon(new int[]{500 + 100 * i, 550 + 100 * i, 600 + 100 * i}, new int[]{500, 600, 500}, 3);
+//            g.fillOval(519 + 100 * i, 501, 62, 62);
+//        }
+//    }
 }

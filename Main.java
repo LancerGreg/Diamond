@@ -18,11 +18,15 @@ public class Main {
 
     
     public static void main(String[] args) throws InterruptedException {
-        Diamond d = new Diamond("Computer Graphics");
+//        Options opt = new Options("Options for Diamond");
+//        
+//        opt.setVisible(true);
+//        opt.setSize(275, 150);     
+//        opt.setLocationRelativeTo(null);
+
+        Diamond diam = new Diamond("Drow Diamond");
         
-        d.setVisible(true);
-        d.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        d.setSize(1000, 1000);
+        
     }
     
 }
